@@ -1,0 +1,69 @@
+
+{% extends 'polls/base.html' %}
+{% load poll_extra %}
+{% block title %}  {% endblock title %}
+
+{% block body %}
+<div class="row">
+    <div class="col-sm-6 mx-3">
+
+                <p>
+            <div class="float-left"><h3>List of {{title}}</h3></div>
+            {% if request.role == 'Admin' %}
+            <a class="btn btn-success float-right" href="/employee/add/">Add employee</a>
+            {% endif %}
+        </p>
+
+</p>
+        <div class="table-responsive-sm px-0">
+        {% if users %}
+
+            <table class="table table-bordered">
+                <thead class="thead-light">
+                    <tr>
+                        <th>Name of Employees</th>
+                        <th class="text-center">Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                {% for user in users %}
+                    <tr>
+                        <th scope="row">
+                            {{user.first_name}} {{user.last_name}}
+                            <span class="badge badge-default">{{user.email}}</span>
+                        </td>
+                        <td class="text-center">
+                            <a class="btn btn-primary" href="{%  url 'employee_details' user.id %}">Details</a>
+                            <a class="btn btn-warning" href="{%  url 'employee_edit' user.id %}">Edit</a>
+                            <a class="btn btn-danger" href="{%  url 'employee_delete' user.id %}">Delete</a>
+                        </td>
+                    </tr>
+                {% endfor %}
+                </tbody>
+                </table>
+
+        {% else %}
+            <p>There is no employee available.</p>
+        {% endif %}
+        </div>
+    </div>
+
+<div class="col-sm 3 -mx-4">
+    {% recent_polls as question %}
+<h3>Recent polls</h3>
+    {% if question %}
+    <div class="list-group">
+        {% for question in question  %}
+            <ul>
+                <li>
+                    <a class="list-group-item" href="/polls/{{ question.id}}/details/">{{ question.title }}</a>
+                </li>
+            </ul>
+        {% endfor %}
+    </div>
+    {% else %}
+        <p>no question available!!!!!!!</p>
+    {% endif %}
+</div>
+</div>
+{% endblock body %}

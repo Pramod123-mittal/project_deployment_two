@@ -1,0 +1,17 @@
+{% extends 'polls/base.html' %}
+{% block title %}  {% endblock title %}
+{% block body %}
+
+<br>
+<div class="container">
+    <form method="POST">
+        {% csrf_token %}
+        <table class="table table-bordered">
+            {{user_form.as_table}}
+        </table>
+        <br>
+        <button type="submit" class="btn btn-success float-right">Add Employee</button>
+    </form>
+</div>
+{% endblock body %}
+

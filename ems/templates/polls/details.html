@@ -1,0 +1,24 @@
+{% extends 'polls/base.html' %}
+{% block title %}  {% endblock title %}
+
+{% block body %}
+<h2 align="center"><strong>detail page</strong></h2>
+
+    <div class="container">
+        <div class="jumbotron">
+
+    <h3>{{ question.title }}</h3>
+    {% for choice in question.choices %}
+        <p>{{ choice.text }} ({{ choice.votes }})</p>
+    {% empty %}
+
+    {% endfor %}
+             <a class="btn btn-warning" href="{%  url 'single_poll' question.id %}">vote</a>
+    <p>poll is created by {{ question.created_by.first_name }}</p>
+
+</div>
+        </div>
+    {% endblock body %}
+
+
+

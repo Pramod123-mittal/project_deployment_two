@@ -1,0 +1,14 @@
+{% extends 'polls/base.html' %}
+{% block title %}  {% endblock title %}
+{% block body %}
+<div class="container-fluid">
+    <h2>{{ user.first_name }} &nbsp {{ user.last_name }}</h2>
+<form method="POST">
+    {% csrf_token %}
+
+   <p>are you sure to delete this employee?</p>
+    <input type="submit" value="yes">
+</form>
+
+</div>
+{% endblock body %}

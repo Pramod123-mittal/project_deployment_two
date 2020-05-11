@@ -1,0 +1,31 @@
+{% extends 'polls/base.html' %}
+{% block title %}  {% endblock title %}
+
+{% block body %}
+<div class="container">
+    <div class="jumbotron">
+
+     <p>
+        <h3>{{question.title}}</h3>
+    </p>
+    <form method="POST" action="/polls/{{question.id}}/">
+        {% csrf_token %}
+    {% for choice in question.choices %}
+        <div class="radio">
+            <label>
+                <input type="radio" name="choice" value="{{choice.id}}">
+                {{choice.text}}
+            </label>
+        </div>
+    {% empty %}
+        <p>There is no choice available for this question.</p>
+    {% endfor %}
+        <button class="btn btn-dark" type="submit" value="Vote">Vote</button>
+    </form>
+  </div>
+</div>
+
+    {% endblock body %}
+
+
+

@@ -1,0 +1,23 @@
+{% extends 'polls/base.html' %}
+{% block title %}  {% endblock title %}
+{% block body %}
+<div class="container my-4" >
+<form align = 'center' method="POST" action="">
+    {% csrf_token %}
+    <div class="jumbotron">
+    <table align="center">
+        <tr>
+            <td> <label for="username">USERNAME</label></td><br>
+            <td><input type="text" name="username" id="username"></td><br>
+        </tr>
+         <tr>
+            <td> <label for="password">PASSWORD</label></td><br>
+            <td><input type="password" name="password" id="password"></td><br>
+        </tr>
+        <p><strong>{{ error }}</strong></p>
+    </table>
+    <button type="submit">login</button>
+    </div>
+</form>
+</div>
+{% endblock body %}

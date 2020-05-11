@@ -1,0 +1,35 @@
+{% extends 'polls/base.html' %}
+{% block title %}  {% endblock title %}
+
+{% block body %} <h2 align="center">
+    <strong>EMS</strong>
+
+     <div class="container">
+ <h5>list of polls</h5>
+    {% if question %}
+         <table class="table table-bordered">
+             <tr>
+                 <th>POLLS</th>
+                 <th>ACTIONS</th>
+             </tr>
+        {% for question in question  %}
+
+             <tr>
+                 <th scope="row">
+                     {{question.title}}
+                 </td>
+                 <td class="text-center">
+                     <a class="btn btn-primary" href="/polls/{{ question.id}}/details/">Details</a>
+                     <a class="btn btn-warning" href="/polls/{{ question.id}}/edit/">Edit</a>
+                     <a class="btn btn-danger" href="/polls/{{ question.id}}/delete/">Delete</a>
+                 </td>
+             </tr>
+
+        {% endfor %}
+    {% else %}
+        <p>no question available!!!!!!!</p>
+             </table>
+
+    {% endif %}
+        </div>
+</h2> {% endblock body %}
